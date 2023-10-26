@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Login from "./Components/Login";
+import Profiles from "./Components/Profiles";
+import LoginProvider from "./Context/LoginProvider";
+import PageNotFound from "./Components/PageNotFound";
+import Welocme from "./Components/Welocme";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <LoginProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Welocme/>}/>
+            <Route path="/profile" element={<Profiles />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </Router>
+      </LoginProvider>
+    </>
   );
 }
 
